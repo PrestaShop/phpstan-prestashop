@@ -1,0 +1,21 @@
+name: PHP tests
+on: [push, pull_request]
+jobs:
+  build:
+    strategy:
+      matrix:
+        php-versions: ['7.1', '7.2','7.4']
+    runs-on: ubuntu-latest
+    name: PHPUnit
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+
+      - run: composer install
+      - run: bash -c '! (find . -name "*.php" ! -path "./vendor/*" -print0 | xargs -0 -n1 -P4 php -l | grep "Parse error")'
+      - run: vendor/bin/phpunit -c tests/phpunit.xml tests
