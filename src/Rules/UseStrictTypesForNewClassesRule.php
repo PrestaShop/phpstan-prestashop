@@ -9,6 +9,8 @@ use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+use PHPStanForPrestaShop\PHPConfigurationFileLoader;
+use PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface;
 
 /**
  * @implements Rule<Node\Stmt\Class_>
@@ -17,6 +19,14 @@ class UseStrictTypesForNewClassesRule implements Rule
 {
     /** @var array */
     private $excludedClassList;
+
+    /**
+     * @param ConfigurationLoaderInterface $configurationFileLoader
+     */
+    public function __construct(ConfigurationLoaderInterface $configurationFileLoader)
+    {
+        $this->excludedClassList = $configurationFileLoader->load();
+    }
 
     /**
      * {@inheritdoc}
@@ -31,8 +41,9 @@ class UseStrictTypesForNewClassesRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
-        $fullyQualifiedName = $scope->getNamespace() . '\\' . $node->name;
-        if (in_array($fullyQualifiedName, $this->getExcludedClassList())) {
+        $namespace = $scope->getNamespace();
+        $fullyQualifiedName = ($namespace ? $namespace . '\\' : '') . $node->name;
+        if (in_array($fullyQualifiedName, $this->excludedClassList)) {
             return [];
         }
 
@@ -44,21 +55,5 @@ class UseStrictTypesForNewClassesRule implements Rule
         }
 
         return [];
-    }
-
-    /**
-     * Fetch file strict-types-baseline.php which contain files
-     * which do not use declare(strict_types=1)
-     * but are not fixed to preserve backward compatibility.
-     *
-     * @return string[]
-     */
-    private function getExcludedClassList()
-    {
-        if (null === $this->excludedClassList) {
-            $this->excludedClassList = require_once __DIR__ . '/strict-types-baseline.php';
-        }
-
-        return $this->excludedClassList;
     }
 }

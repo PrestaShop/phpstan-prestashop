@@ -1,6 +1,6 @@
 <?php
 
-class C
+class A
 {
 	public $id;
 }

@@ -1,6 +1,8 @@
 <?php
 
-class B
+namespace Space;
+
+class A
 {
     public $id;
 }
