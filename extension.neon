@@ -1,0 +1,7 @@
+services:
+	UseStrictTypesForNewClassesRule:
+		class: PHPStanForPrestaShop\Rules\UseStrictTypesForNewClassesRule
+		arguments:
+			configurationFileLoader: @strictTypesForNewClassesRuleConfigurationFileLoader
+		tags:
+			- phpstan.rules.rule

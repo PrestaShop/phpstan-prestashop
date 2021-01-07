@@ -24,6 +24,27 @@ Run tests using PHPUnit:
 vendor/bin/phpunit -c tests/phpunit.xml tests
 ```
 
-## Configuration
+## Use for a project
 
-TODO
+To use this extension, first require it in [Composer](https://getcomposer.org/):
+
+```bash
+composer require --dev matks/phpstan-prestashop
+```
+
+Then you need to include extension.neon in your project's PHPStan config:
+
+```neon
+includes:
+    - vendor/matks/phpstan-prestashop/extension.neon
+```
+
+You need to provide a `strictTypesForNewClassesRuleConfigurationFileLoader` configuration loader instance for rule `UseStrictTypesForNewClassesRule`, you can do it like this:
+
+```neon
+services:
+	configurationFileLoader:
+		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+		arguments:
+			- .github/workflows/phpstan/list.php
+```
