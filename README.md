@@ -39,11 +39,13 @@ includes:
     - vendor/matks/phpstan-prestashop/extension.neon
 ```
 
-You need to provide a `strictTypesForNewClassesRuleConfigurationFileLoader` configuration loader instance for rule `UseStrictTypesForNewClassesRule`, you can do it like this:
+You need to provide a `@strictTypesForNewClassesRuleConfigurationFileLoader` configuration loader instance for rule `UseStrictTypesForNewClassesRule`.
+
+You can do it like this:
 
 ```neon
 services:
-	configurationFileLoader:
+	strictTypesForNewClassesRuleConfigurationFileLoader:
 		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
 		arguments:
 			- .github/workflows/phpstan/list.php
