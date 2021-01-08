@@ -1,7 +1,7 @@
 {
-	"name": "matks/phpstan-prestashop",
+	"name": "prestashop/phpstan-prestashop",
 	"type": "phpstan-extension",
-	"description": "PrestaShop extensions for PHPStan",
+	"description": "PrestaShop extension for PHPStan",
 	"license": [
 		"MIT"
 	],

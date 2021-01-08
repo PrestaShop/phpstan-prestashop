@@ -29,14 +29,14 @@ vendor/bin/phpunit -c tests/phpunit.xml tests
 To use this extension, first require it in [Composer](https://getcomposer.org/):
 
 ```bash
-composer require --dev matks/phpstan-prestashop
+composer require --dev prestashop/phpstan-prestashop
 ```
 
 Then you need to include extension.neon in your project's PHPStan config:
 
 ```neon
 includes:
-    - vendor/matks/phpstan-prestashop/extension.neon
+    - vendor/prestashop/phpstan-prestashop/extension.neon
 ```
 
 You need to provide a `@strictTypesForNewClassesRuleConfigurationFileLoader` configuration loader instance for rule `UseStrictTypesForNewClassesRule`.
