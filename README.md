@@ -1,6 +1,8 @@
 # PrestaShop PHPStan extension
 
-![PHP tests](https://github.com/matks/phpstan-prestashop/workflows/PHP%20tests/badge.svg)
+![PHP tests](https://github.com/prestashop/phpstan-prestashop/workflows/PHP%20tests/badge.svg)
+
+PHPStan extension for PrestaShop: provides custom rules used in PrestaShop project.
 
 * [PHPStan](https://phpstan.org/)
 * [PrestaShop](https://github.com/prestashop/prestashop)
@@ -24,7 +26,7 @@ Run tests using PHPUnit:
 vendor/bin/phpunit -c tests/phpunit.xml tests
 ```
 
-## Use for a project
+## Use in a project
 
 To use this extension, first require it in [Composer](https://getcomposer.org/):
 
@@ -39,9 +41,11 @@ includes:
     - vendor/prestashop/phpstan-prestashop/extension.neon
 ```
 
-You need to provide a `@strictTypesForNewClassesRuleConfigurationFileLoader` configuration loader instance for rule `UseStrictTypesForNewClassesRule`.
+You need to provide a service that is an instance of `PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface` named `@strictTypesForNewClassesRuleConfigurationFileLoader`. It is used by rule `UseStrictTypesForNewClassesRule`.
 
-You can do it like this:
+There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader` and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
+
+Example with PHPConfigurationFileLoader:
 
 ```neon
 services:
