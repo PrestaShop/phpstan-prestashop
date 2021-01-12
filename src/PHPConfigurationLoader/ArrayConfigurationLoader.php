@@ -10,7 +10,7 @@ class ArrayConfigurationLoader implements ConfigurationLoaderInterface
     private $configurationCache;
 
     /**
-     * @param $filepath
+     * @param array $configuration
      */
     public function __construct(array $configuration)
     {
