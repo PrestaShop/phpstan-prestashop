@@ -24,4 +24,10 @@ class ArrayConfigurationLoaderTest extends TestCase
         $loader = new ArrayConfigurationLoader($a);
         $this->assertEquals($a, $loader->load());
     }
+
+    public function testEmptyConfiguration()
+    {
+        $loader = new ArrayConfigurationLoader([]);
+        $this->assertEquals([], $loader->load());
+    }
 }

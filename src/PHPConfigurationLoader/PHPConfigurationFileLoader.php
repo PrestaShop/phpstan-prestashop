@@ -13,7 +13,7 @@ class PHPConfigurationFileLoader implements ConfigurationLoaderInterface
     private $configurationCache;
 
     /**
-     * @param $filepath
+     * @param string $filepath
      */
     public function __construct(string $filepath)
     {
