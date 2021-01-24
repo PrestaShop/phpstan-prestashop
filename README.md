@@ -1,8 +1,9 @@
 # PrestaShop PHPStan extension
 
 ![PHP tests](https://github.com/prestashop/phpstan-prestashop/workflows/PHP%20tests/badge.svg)
-
-PHPStan extension for PrestaShop: provides custom rules used in PrestaShop project.
+![Static Analysis](https://github.com/PrestaShop/phpstan-prestashop/workflows/Static%20Analysis/badge.svg)
+[![GitHub release](https://img.shields.io/github/v/release/prestashop/phpstan-prestashop)](https://github.com/PrestaShop/phpstan-prestashop)
+[![GitHub license](https://img.shields.io/github/license/PrestaShop/phpstan-prestashop)](https://github.com/PrestaShop/phpstan-prestashop/LICENSE.md)
 
 * [PHPStan](https://phpstan.org/)
 * [PrestaShop](https://github.com/prestashop/prestashop)
