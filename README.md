@@ -27,6 +27,11 @@ Run tests using PHPUnit:
 vendor/bin/phpunit -c tests/phpunit.xml tests
 ```
 
+Run static analysis with PHPStan:
+```bash
+vendor/bin/phpstan analyse src tests -l 5
+```
+
 ## Use in a project
 
 To use this extension, first require it in [Composer](https://getcomposer.org/):
