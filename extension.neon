@@ -5,3 +5,8 @@ services:
 			configurationFileLoader: @strictTypesForNewClassesRuleConfigurationFileLoader
 		tags:
 			- phpstan.rules.rule
+
+	ClassConstantsMustHaveVisibilityRule:
+		class: PHPStanForPrestaShop\Rules\ClassConstantsMustHaveVisibilityRule
+		tags:
+			- phpstan.rules.rule
