@@ -30,7 +30,10 @@ class ClassConstantsMustHaveVisibilityRuleTest extends RuleTestCase
             [$dataDirectory . 'ClassBWithPublicConstant.php'], []
         );
         $this->analyse(
-            [$dataDirectory . 'ClassCWithProtectedConstant.php'], []
+            [$dataDirectory . 'ClassCWithPrivateConstant.php'], []
+        );
+        $this->analyse(
+            [$dataDirectory . 'ClassDWithProtectedConstant.php'], []
         );
     }
 }

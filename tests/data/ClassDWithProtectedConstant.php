@@ -2,7 +2,7 @@
 
 namespace Space;
 
-class C
+class D
 {
     protected const FOO = 1;
 }
