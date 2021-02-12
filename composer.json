@@ -5,6 +5,12 @@
 	"license": [
 		"MIT"
 	],
+	"authors": [
+		{
+			"name": "PrestaShop SA",
+			"email": "contact@prestashop.com"
+		}
+	],
 	"require": {
 		"php": "^7.1",
 		"phpstan/phpstan": "^0.12.48"
