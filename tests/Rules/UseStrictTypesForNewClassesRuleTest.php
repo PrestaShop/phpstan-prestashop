@@ -1,4 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+/*
+ * Copyright (c) Since 2007 PrestaShop.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
 
 namespace PHPStanForPrestaShopTests\Rules;
 
@@ -24,14 +32,14 @@ class UseStrictTypesForNewClassesRuleTest extends RuleTestCase
             [$dataDirectory . 'NoDeclareStrictTypeClassA.php'], [
             [
                 'Class should declare strict type.',
-                3,
+                9,
             ],
         ]);
         $this->analyse(
             [$dataDirectory . 'NoDeclareStrictTypeClassSpaceA.php'], [
             [
                 'Class should declare strict type.',
-                5,
+                11,
             ],
         ]);
         $this->analyse(
