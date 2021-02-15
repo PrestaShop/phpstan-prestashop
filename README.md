@@ -47,9 +47,18 @@ includes:
     - vendor/prestashop/phpstan-prestashop/extension.neon
 ```
 
-You need to provide a service that is an instance of `PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface` named `@strictTypesForNewClassesRuleConfigurationFileLoader`. It is used by rule `UseStrictTypesForNewClassesRule`.
+### Required settings
 
-There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader` and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
+#### UseStrictTypesForNewClassesRule
+
+Rule `UseStrictTypesForNewClassesRule` requires loading of a configuration asset.
+
+You need to provide a service that is an instance of `PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface`,
+named `@strictTypesForNewClassesRuleConfigurationFileLoader`. It should load an array of classes for which
+the `UseStrictTypesForNewClassesRule` should not be applied.
+
+There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader`
+and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
 
 Example with PHPConfigurationFileLoader:
 
@@ -58,5 +67,26 @@ services:
 	strictTypesForNewClassesRuleConfigurationFileLoader:
 		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
 		arguments:
-			- .github/workflows/phpstan/list.php
+			- .github/workflows/phpstan/exclude-class-list.php
+```
+
+#### UseTypedReturnForNewMethodsRule
+
+Rule `UseTypedReturnForNewMethodsRule` requires loading of a configuration asset.
+
+You need to provide a service that is an instance of `PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface`,
+named `@returnTypesForNewMethodsRuleConfigurationFileLoader`. It should load an array of class methods for which
+the `UseTypedReturnForNewMethodsRule` should not be applied.
+
+There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader`
+and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
+
+Example with PHPConfigurationFileLoader:
+
+```neon
+services:
+	returnTypesForNewMethodsRuleConfigurationFileLoader:
+		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+		arguments:
+			- .github/workflows/phpstan/exclude-return-functions-list.php
 ```
