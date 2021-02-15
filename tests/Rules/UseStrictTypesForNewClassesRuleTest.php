@@ -32,14 +32,14 @@ class UseStrictTypesForNewClassesRuleTest extends RuleTestCase
             [$dataDirectory . 'NoDeclareStrictTypeClassA.php'], [
             [
                 'Class should declare strict type.',
-                3,
+                9,
             ],
         ]);
         $this->analyse(
             [$dataDirectory . 'NoDeclareStrictTypeClassSpaceA.php'], [
             [
                 'Class should declare strict type.',
-                5,
+                11,
             ],
         ]);
         $this->analyse(

@@ -31,7 +31,7 @@ class ClassConstantsMustHaveVisibilityRuleTest extends RuleTestCase
             [$dataDirectory . 'ClassAWithUnscopedConstant.php'], [
             [
                 'Class constant FOO must declare a visibility',
-                7,
+                13,
             ],
         ]);
         $this->analyse(
