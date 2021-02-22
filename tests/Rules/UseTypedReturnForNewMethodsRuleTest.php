@@ -19,14 +19,18 @@ class UseTypedReturnForNewMethodsRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        $configurationLoader = new ArrayConfigurationLoader(['D::bar', 'Space\E::bar']);
+        $configurationLoader = new ArrayConfigurationLoader([
+            'D::bar',
+            'PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods\MethodBarEWithoutReturnType::bar',
+            'PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods\E::bar',
+        ]);
 
         return new UseTypedReturnForNewMethodsRule($configurationLoader);
     }
 
     public function testRule(): void
     {
-        $dataDirectory = __DIR__ . '/../data/';
+        $dataDirectory = __DIR__ . '/../Data/UseTypedReturnForNewMethods/';
 
         $this->analyse(
             [$dataDirectory . 'MethodFooAWithoutReturnType.php'], [
@@ -38,5 +42,6 @@ class UseTypedReturnForNewMethodsRuleTest extends RuleTestCase
         $this->analyse([$dataDirectory . 'MethodFooBWithReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodFooCWithNullableReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodBarEWithoutReturnType.php'], []);
+        $this->analyse([$dataDirectory . 'MethodBarFExtendsEWithoutReturnType.php'], []);
     }
 }

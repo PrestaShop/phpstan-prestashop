@@ -6,9 +6,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Space;
+namespace PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods;
 
-class E
+use PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods\E;
+
+class MethodBarFExtendsEWithoutReturnType extends E
 {
     public function bar()
     {

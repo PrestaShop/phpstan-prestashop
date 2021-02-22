@@ -6,11 +6,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Space;
+namespace PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods;
 
-class C
+class MethodBarEWithoutReturnType
 {
-    public function foo(): ?string
+    public function bar()
     {
         return 'hello world';
     }

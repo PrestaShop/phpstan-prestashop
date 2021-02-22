@@ -56,13 +56,29 @@ class UseTypedReturnForNewMethodsRule implements Rule
             return [];
         }
 
-        if (!$node->getReturnType()) {
+        if ($node->getReturnType()) {
+            return [];
+        }
+
+        $parentClassNames = $scope->getClassReflection()->getParentClassesNames();
+        if (empty($parentClassNames)) {
+            // class method does not use return type and has no parents, it's a rule violation
             return [
                 RuleErrorBuilder::message(sprintf('Function %s should declare return type.', $node->name))
                     ->build(),
             ];
         }
 
-        return [];
+        foreach ($parentClassNames as $parentClassName) {
+            $fullParentMethodName = $parentClassName . '::' . $node->name;
+            if (in_array($fullParentMethodName, $this->excludedClassMethodsList)) {
+                return [];
+            }
+        }
+
+        return [
+            RuleErrorBuilder::message(sprintf('Function %s should declare return type.', $node->name))
+                ->build(),
+        ];
     }
 }
