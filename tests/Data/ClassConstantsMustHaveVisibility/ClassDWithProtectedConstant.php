@@ -6,7 +6,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Space;
+namespace PHPStanForPrestaShopTests\Data\ClassConstantsMustHaveVisibility;
+
 
 class D
 {

@@ -5,10 +5,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace PHPStanForPrestaShopTests\Data\UseStrictTypesForNewClasses;
 
-namespace Space;
 
 class A
 {
-    const FOO = 1;
+	public $id;
 }

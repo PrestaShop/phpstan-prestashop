@@ -6,7 +6,9 @@
  * file that was distributed with this source code.
  */
 
-class A
+namespace PHPStanForPrestaShopTests\Data\UseStrictTypesForNewClasses;
+
+class B
 {
-	public $id;
+    public $id;
 }
