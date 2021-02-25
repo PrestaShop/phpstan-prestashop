@@ -19,13 +19,13 @@ class PHPConfigurationFileLoaderTest extends TestCase
 {
     public function testImplementsInterface()
     {
-        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigFile.php');
+        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigurationFile.php');
         $this->assertInstanceOf(ConfigurationLoaderInterface::class, $loader);
     }
 
     public function testLoadedConfiguration()
     {
-        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigFile.php');
+        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigurationFile.php');
         $this->assertEquals(['abc'], $loader->load());
     }
 
