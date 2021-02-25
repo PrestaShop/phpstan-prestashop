@@ -19,13 +19,13 @@ class PHPConfigurationFileLoaderTest extends TestCase
 {
     public function testImplementsInterface()
     {
-        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../data/dummyConfigFile.php');
+        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigFile.php');
         $this->assertInstanceOf(ConfigurationLoaderInterface::class, $loader);
     }
 
     public function testLoadedConfiguration()
     {
-        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../data/dummyConfigFile.php');
+        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigFile.php');
         $this->assertEquals(['abc'], $loader->load());
     }
 
@@ -33,6 +33,6 @@ class PHPConfigurationFileLoaderTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../data/a.php');
+        $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/a.php');
     }
 }

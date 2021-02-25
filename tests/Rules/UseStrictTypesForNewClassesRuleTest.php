@@ -19,20 +19,20 @@ class UseStrictTypesForNewClassesRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        $configurationLoader = new ArrayConfigurationLoader(['B', 'Space\B']);
+        $configurationLoader = new ArrayConfigurationLoader(['B', 'PHPStanForPrestaShopTests\Data\UseStrictTypesForNewClasses\B']);
 
         return new UseStrictTypesForNewClassesRule($configurationLoader);
     }
 
     public function testRule(): void
     {
-        $dataDirectory = __DIR__ . '/../data/';
+        $dataDirectory = __DIR__ . '/../Data/UseStrictTypesForNewClasses/';
 
         $this->analyse(
             [$dataDirectory . 'NoDeclareStrictTypeClassA.php'], [
             [
                 'Class should declare strict type.',
-                9,
+                11,
             ],
         ]);
         $this->analyse(

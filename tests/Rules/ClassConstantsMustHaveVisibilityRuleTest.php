@@ -25,7 +25,7 @@ class ClassConstantsMustHaveVisibilityRuleTest extends RuleTestCase
 
     public function testRule(): void
     {
-        $dataDirectory = __DIR__ . '/../data/';
+        $dataDirectory = __DIR__ . '/../Data/ClassConstantsMustHaveVisibility/';
 
         $this->analyse(
             [$dataDirectory . 'ClassAWithUnscopedConstant.php'], [
