@@ -43,5 +43,6 @@ class UseTypedReturnForNewMethodsRuleTest extends RuleTestCase
         $this->analyse([$dataDirectory . 'MethodFooCWithNullableReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodBarEWithoutReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodBarFExtendsEWithoutReturnType.php'], []);
+        $this->analyse([$dataDirectory . 'MethodFooGWithNullReturnType.php'], []);
     }
 }
