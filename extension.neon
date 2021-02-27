@@ -17,3 +17,10 @@ services:
 			configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
 		tags:
 			- phpstan.rules.rule
+
+    UseTypeHintForNewMethodsRule:
+		class: PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule
+		arguments:
+			configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
+		tags:
+			- phpstan.rules.rule
