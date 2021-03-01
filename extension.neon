@@ -1,26 +1,26 @@
 services:
-	UseStrictTypesForNewClassesRule:
-		class: PHPStanForPrestaShop\Rules\UseStrictTypesForNewClassesRule
-		arguments:
-			configurationFileLoader: @strictTypesForNewClassesRuleConfigurationFileLoader
-		tags:
-			- phpstan.rules.rule
+    UseStrictTypesForNewClassesRule:
+        class: PHPStanForPrestaShop\Rules\UseStrictTypesForNewClassesRule
+        arguments:
+            configurationFileLoader: @strictTypesForNewClassesRuleConfigurationFileLoader
+        tags:
+            - phpstan.rules.rule
 
-	ClassConstantsMustHaveVisibilityRule:
-		class: PHPStanForPrestaShop\Rules\ClassConstantsMustHaveVisibilityRule
-		tags:
-			- phpstan.rules.rule
+    ClassConstantsMustHaveVisibilityRule:
+        class: PHPStanForPrestaShop\Rules\ClassConstantsMustHaveVisibilityRule
+        tags:
+            - phpstan.rules.rule
 
-	UseTypedReturnForNewMethodsRule:
-		class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
-		arguments:
-			configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
-		tags:
-			- phpstan.rules.rule
+    UseTypedReturnForNewMethodsRule:
+    class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
+        arguments:
+            configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
+        tags:
+            - phpstan.rules.rule
 
     UseTypeHintForNewMethodsRule:
-		class: PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule
-		arguments:
-			configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
-		tags:
-			- phpstan.rules.rule
+        class: PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule
+        arguments:
+            configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
+        tags:
+            - phpstan.rules.rule
