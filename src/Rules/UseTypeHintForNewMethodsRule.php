@@ -95,7 +95,7 @@ class UseTypeHintForNewMethodsRule implements Rule
         return sprintf('Every parameter of function %s should be type hinted ' .
             '(untyped parameters: %s).',
             $functionName,
-            implode(',', $notTypedParameters)
+            implode(', ', $notTypedParameters)
         );
     }
 

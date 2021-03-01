@@ -111,12 +111,12 @@ the `UseTypeHintForNewMethodsRule` should not be applied.
 There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader`
 and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
 
-Example with PHPConfigurationFileLoader:
+Example with `PHPConfigurationFileLoader`:
 
 ```neon
 services:
-	typeHintsForNewMethodsRuleConfigurationFileLoader:
-		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
-		arguments:
-			- .github/workflows/phpstan/exclude-typehint-functions-list.php
+    typeHintsForNewMethodsRuleConfigurationFileLoader:
+        class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+        arguments:
+            - .github/workflows/phpstan/exclude-typehint-functions-list.php
 ```
