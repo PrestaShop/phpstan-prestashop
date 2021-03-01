@@ -8,6 +8,15 @@
 * [PHPStan](https://phpstan.org/)
 * [PrestaShop](https://github.com/prestashop/prestashop)
 
+## Content
+
+This PHPStan extension adds custom rules to PHPStan:
+
+- ClassConstantsMustHaveVisibilityRule
+- UseStrictTypesForNewClassesRule
+- UseTypeHintForNewMethodsRule
+- UseTypedReturnForNewMethodsRule
+
 ## Installation
 
 Install the dependencies with [Composer](https://getcomposer.org/):
@@ -26,6 +35,8 @@ Run tests using PHPUnit:
 ```bash
 vendor/bin/phpunit -c tests/phpunit.xml tests
 ```
+
+Rules are tested using PHPStan [RuleTestCase](https://github.com/phpstan/phpstan-src/blob/master/src/Testing/RuleTestCase.php).
 
 Run static analysis with PHPStan:
 ```bash
@@ -89,4 +100,23 @@ services:
 		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
 		arguments:
 			- .github/workflows/phpstan/exclude-return-functions-list.php
+```
+
+#### UseTypeHintForNewMethodsRule
+
+Similarly to `UseTypedReturnForNewMethodsRule`, rule `UseTypeHintForNewMethodsRule` requires loading of an instance of `PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface`,
+named `@typeHintsForNewMethodsRuleConfigurationFileLoader`. It should load an array of class methods for which
+the `UseTypeHintForNewMethodsRule` should not be applied.
+
+There is two available implementations: `PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader`
+and `PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader`.
+
+Example with PHPConfigurationFileLoader:
+
+```neon
+services:
+	typeHintsForNewMethodsRuleConfigurationFileLoader:
+		class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+		arguments:
+			- .github/workflows/phpstan/exclude-typehint-functions-list.php
 ```
