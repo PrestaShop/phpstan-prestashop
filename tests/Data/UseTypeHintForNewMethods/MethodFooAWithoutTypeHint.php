@@ -10,7 +10,7 @@ namespace PHPStanForPrestaShopTests\Data\UseTypeHintForNewMethods;
 
 class MethodFooAWithoutTypeHint
 {
-    public function foo($a)
+    public function foo($a, $z)
     {
         return 'hello world';
     }

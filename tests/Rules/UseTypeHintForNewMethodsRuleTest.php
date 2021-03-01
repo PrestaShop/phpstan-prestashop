@@ -36,7 +36,7 @@ class UseTypeHintForNewMethodsRuleTest extends RuleTestCase
         $this->analyse(
             [$dataDirectory . 'MethodFooAWithoutTypeHint.php'], [
             [
-                'Every parameter of function foo should be type hinted (untyped parameters: a).',
+                'Every parameter of function foo should be type hinted (untyped parameters: a, z).',
                 13,
             ],
         ]);
