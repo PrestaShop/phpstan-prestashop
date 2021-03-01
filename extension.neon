@@ -10,3 +10,10 @@ services:
 		class: PHPStanForPrestaShop\Rules\ClassConstantsMustHaveVisibilityRule
 		tags:
 			- phpstan.rules.rule
+
+	UseTypedReturnForNewMethodsRule:
+		class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
+		arguments:
+			configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
+		tags:
+			- phpstan.rules.rule

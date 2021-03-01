@@ -1,47 +1,47 @@
 {
-	"name": "prestashop/phpstan-prestashop",
-	"type": "phpstan-extension",
-	"description": "PrestaShop extension for PHPStan",
-	"license": [
-		"MIT"
-	],
-	"authors": [
-		{
-			"name": "PrestaShop SA",
-			"email": "contact@prestashop.com"
-		}
-	],
-	"require": {
-		"php": "^7.1",
-		"phpstan/phpstan": "^0.12.48"
-	},
-	"require-dev": {
-		"phpstan/phpstan-phpunit": "^0.12.16",
-		"phpstan/phpstan-strict-rules": "^0.12.5",
-		"phpunit/phpunit": "^7.5.20",
-		"symfony/console": "^5.2"
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "0.12-dev"
-		},
-		"phpstan": {
-			"includes": [
-				"extension.neon",
-				"rules.neon"
-			]
-		}
-	},
-	"autoload": {
-		"psr-4": {
-			"PHPStanForPrestaShop\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"PHPStanForPrestaShopTests\\": "tests/"
-		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+  "name": "prestashop/phpstan-prestashop",
+  "type": "phpstan-extension",
+  "description": "PrestaShop extension for PHPStan",
+  "license": [
+    "MIT"
+  ],
+  "authors": [
+    {
+      "name": "PrestaShop SA",
+      "email": "contact@prestashop.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "phpstan/phpstan": "^0.12.48"
+  },
+  "require-dev": {
+    "phpstan/phpstan-phpunit": "^0.12.16",
+    "phpstan/phpstan-strict-rules": "^0.12.5",
+    "phpunit/phpunit": "^7.5.20",
+    "symfony/console": "^5.2"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.12-dev"
+    },
+    "phpstan": {
+      "includes": [
+        "extension.neon",
+        "rules.neon"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPStanForPrestaShop\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PHPStanForPrestaShopTests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
