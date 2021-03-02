@@ -50,6 +50,7 @@ class UseTypeHintForNewMethodsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        // Check if class method is part of the exclusion list. Yes => no violations
         $className = $scope->getClassReflection()->getName();
         $fullMethodName = $className . '::' . $node->name;
         if (in_array($fullMethodName, $this->excludedClassMethodsList)) {
@@ -57,14 +58,14 @@ class UseTypeHintForNewMethodsRule implements Rule
         }
 
         $notTypedParameters = $this->findNotTypedParameters($node);
-
+        // If class method has no untyped parameters => no violations
         if (empty($notTypedParameters)) {
             return [];
         }
 
         $parentClassNames = $scope->getClassReflection()->getParentClassesNames();
         if (empty($parentClassNames)) {
-            // class method does not use typed hints and has no parents, it's a rule violation
+            // Class method does not use typed hints and has no parents => rule violation
             return [
                 RuleErrorBuilder::message($this->buildErrorMessage($node->name->name, $notTypedParameters))
                     ->build(),
@@ -74,10 +75,13 @@ class UseTypeHintForNewMethodsRule implements Rule
         foreach ($parentClassNames as $parentClassName) {
             $fullParentMethodName = $parentClassName . '::' . $node->name;
             if (in_array($fullParentMethodName, $this->excludedClassMethodsList)) {
+                // If class has parents who also have this class method
+                // If they are part of the exclusion list => no violations
                 return [];
             }
         }
 
+        // If we are here, then there are untyped parameters and they are not excluded => rule violation
         return [
             RuleErrorBuilder::message($this->buildErrorMessage($node->name->name, $notTypedParameters))
                 ->build(),
