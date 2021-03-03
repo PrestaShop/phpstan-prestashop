@@ -50,19 +50,21 @@ class UseTypedReturnForNewMethodsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        // Check if class method is part of the exclusion list. Yes => no violation.
         $className = $scope->getClassReflection()->getName();
         $fullMethodName = $className . '::' . $node->name;
         if (in_array($fullMethodName, $this->excludedClassMethodsList)) {
             return [];
         }
 
+        // Check if class method has return type. If yes => no violation.
         if ($node->getReturnType()) {
             return [];
         }
 
         $parentClassNames = $scope->getClassReflection()->getParentClassesNames();
         if (empty($parentClassNames)) {
-            // class method does not use return type and has no parents, it's a rule violation
+            // Class method does not use return type and has no parents => rule violation.
             return [
                 RuleErrorBuilder::message(sprintf('Function %s should declare return type.', $node->name))
                     ->build(),
@@ -72,6 +74,8 @@ class UseTypedReturnForNewMethodsRule implements Rule
         foreach ($parentClassNames as $parentClassName) {
             $fullParentMethodName = $parentClassName . '::' . $node->name;
             if (in_array($fullParentMethodName, $this->excludedClassMethodsList)) {
+                // If class has parents who also have this class method
+                // If they are part of the exclusion list => no violation.
                 return [];
             }
         }
