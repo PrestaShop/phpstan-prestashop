@@ -12,7 +12,7 @@ services:
             - phpstan.rules.rule
 
     UseTypedReturnForNewMethodsRule:
-    class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
+        class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
         arguments:
             configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
         tags:
