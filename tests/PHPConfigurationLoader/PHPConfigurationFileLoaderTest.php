@@ -36,7 +36,7 @@ class PHPConfigurationFileLoaderTest extends TestCase
         $loader = new PHPConfigurationFileLoader(__DIR__ . '/../Data/a.php');
     }
 
-        public function testLoadTwiceTheSameFile()
+    public function testLoadTwiceTheSameFile()
     {
         $loader1 = new PHPConfigurationFileLoader(__DIR__ . '/../Data/dummyConfigurationFile.php');
 
