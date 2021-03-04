@@ -35,7 +35,7 @@ class PHPConfigurationFileLoader implements ConfigurationLoaderInterface
     public function load(): array
     {
         if ($this->configurationCache === null) {
-            $this->configurationCache = require_once $this->filepath;
+            $this->configurationCache = require $this->filepath;
         }
 
         return $this->configurationCache;
