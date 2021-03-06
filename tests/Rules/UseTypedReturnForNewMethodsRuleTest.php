@@ -44,5 +44,13 @@ class UseTypedReturnForNewMethodsRuleTest extends RuleTestCase
         $this->analyse([$dataDirectory . 'MethodBarEWithoutReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodBarFExtendsEWithoutReturnType.php'], []);
         $this->analyse([$dataDirectory . 'MethodFooGWithNullReturnType.php'], []);
+
+        $this->analyse(
+            [$dataDirectory . 'InterfaceHWithoutReturnType.php'], [
+            [
+                'Function bar should declare return type.',
+                13,
+            ],
+        ]);
     }
 }
