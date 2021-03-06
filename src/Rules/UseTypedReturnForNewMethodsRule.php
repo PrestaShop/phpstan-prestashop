@@ -50,6 +50,10 @@ class UseTypedReturnForNewMethodsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        if ($node->isMagic()) {
+            return [];
+        }
+
         // Check if class method is part of the exclusion list. Yes => no violation.
         $className = $scope->getClassReflection()->getName();
         $fullMethodName = $className . '::' . $node->name;
