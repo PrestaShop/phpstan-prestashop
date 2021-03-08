@@ -55,5 +55,13 @@ class UseTypeHintForNewMethodsRuleTest extends RuleTestCase
         $this->analyse([$dataDirectory . 'MethodFooEThreeParametersWithIdentifierTypeHint.php'], []);
         $this->analyse([$dataDirectory . 'MethodFooGWithoutTypeHintButExcluded.php'], []);
         $this->analyse([$dataDirectory . 'MethodFooHWithoutTypeHintButExtendsAnExcludedClass.php'], []);
+
+        $this->analyse(
+            [$dataDirectory . 'InterfaceFooIWithoutTypeHint.php'], [
+            [
+                'Every parameter of function foo should be type hinted (untyped parameters: a, b).',
+                15,
+            ],
+        ]);
     }
 }
