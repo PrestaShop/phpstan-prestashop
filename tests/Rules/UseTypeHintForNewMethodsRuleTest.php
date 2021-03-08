@@ -13,6 +13,7 @@ namespace PHPStanForPrestaShopTests\Rules;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use PHPStanForPrestaShop\PHPConfigurationLoader\ArrayConfigurationLoader;
+use PHPStanForPrestaShop\PhpDoc\PhpDocAnalyzer;
 use PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule;
 use PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule;
 
@@ -26,7 +27,7 @@ class UseTypeHintForNewMethodsRuleTest extends RuleTestCase
             'PHPStanForPrestaShopTests\Data\UseTypeHintForNewMethods\F::foo',
         ]);
 
-        return new UseTypeHintForNewMethodsRule($configurationLoader);
+        return new UseTypeHintForNewMethodsRule($configurationLoader, new PhpDocAnalyzer());
     }
 
     public function testRule(): void
@@ -64,5 +65,6 @@ class UseTypeHintForNewMethodsRuleTest extends RuleTestCase
             ],
         ]);
         $this->analyse([$dataDirectory . 'ClassWithConstructAndGetSet.php'], []);
+        $this->analyse([$dataDirectory . 'MethodWithInheritPhpDoc.php'], []);
     }
 }

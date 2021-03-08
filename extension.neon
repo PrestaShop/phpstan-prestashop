@@ -1,4 +1,7 @@
 services:
+    PhpDocAnalyzer:
+        class: PHPStanForPrestaShop\PhpDoc\PhpDocAnalyzer
+
     UseStrictTypesForNewClassesRule:
         class: PHPStanForPrestaShop\Rules\UseStrictTypesForNewClassesRule
         arguments:
@@ -15,6 +18,7 @@ services:
         class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
         arguments:
             configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
+            PhpDocAnalyzer: @PhpDocAnalyzer
         tags:
             - phpstan.rules.rule
 
@@ -22,5 +26,6 @@ services:
         class: PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule
         arguments:
             configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
+            PhpDocAnalyzer: @PhpDocAnalyzer
         tags:
             - phpstan.rules.rule
