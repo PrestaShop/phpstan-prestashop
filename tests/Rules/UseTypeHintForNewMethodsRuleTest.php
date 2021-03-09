@@ -63,5 +63,6 @@ class UseTypeHintForNewMethodsRuleTest extends RuleTestCase
                 15,
             ],
         ]);
+        $this->analyse([$dataDirectory . 'ClassWithConstructAndGetSet.php'], []);
     }
 }
