@@ -52,6 +52,6 @@ class UseTypedReturnForNewMethodsRuleTest extends RuleTestCase
                 13,
             ],
         ]);
-        $this->analyse([$dataDirectory . 'IWithConstructAndGetSet.php'], []);
+        $this->analyse([$dataDirectory . 'ClassWithConstructAndGetSet.php'], []);
     }
 }

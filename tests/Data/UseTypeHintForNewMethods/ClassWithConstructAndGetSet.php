@@ -6,25 +6,25 @@
  * file that was distributed with this source code.
  */
 
-namespace PHPStanForPrestaShopTests\Data\UseTypedReturnForNewMethods;
+namespace PHPStanForPrestaShopTests\Data\UseTypeHintForNewMethods;
 
-class IWithConstructAndGetSet
+class ClassWithConstructAndGetSet
 {
     private $a;
 
-    // no return type, but that's OK
+    // no type hint, but that's OK
     public function __construct($a)
     {
         $this->a = $a;
     }
 
-    // no return type, but that's OK
+    // no type hint, but that's OK
     public function __get($name)
     {
 
     }
 
-    // no return type, but that's OK
+    // no type hint, but that's OK
     public function __set($name, $value)
     {
 
