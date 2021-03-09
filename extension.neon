@@ -18,7 +18,7 @@ services:
         class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
         arguments:
             configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
-            PhpDocAnalyzer: @PhpDocAnalyzer
+            phpDocAnalyzer: @PhpDocAnalyzer
         tags:
             - phpstan.rules.rule
 
@@ -26,6 +26,6 @@ services:
         class: PHPStanForPrestaShop\Rules\UseTypeHintForNewMethodsRule
         arguments:
             configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
-            PhpDocAnalyzer: @PhpDocAnalyzer
+            phpDocAnalyzer: @PhpDocAnalyzer
         tags:
             - phpstan.rules.rule
