@@ -16,6 +16,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface;
+use PHPStanForPrestaShop\PhpDoc\PhpDocAnalyzer;
 
 /**
  * @implements Rule<Node\Stmt\ClassMethod>
@@ -25,12 +26,17 @@ class UseTypeHintForNewMethodsRule implements Rule
     /** @var array */
     private $excludedClassMethodsList;
 
+    /** @var PhpDocAnalyzer */
+    private $phpDocAnalyzer;
+
     /**
      * @param ConfigurationLoaderInterface $configurationFileLoader
+     * @param PhpDocAnalyzer $phpDocAnalyzer
      */
-    public function __construct(ConfigurationLoaderInterface $configurationFileLoader)
+    public function __construct(ConfigurationLoaderInterface $configurationFileLoader, PhpDocAnalyzer $phpDocAnalyzer)
     {
         $this->excludedClassMethodsList = $configurationFileLoader->load();
+        $this->phpDocAnalyzer = $phpDocAnalyzer;
     }
 
     /**
@@ -51,6 +57,11 @@ class UseTypeHintForNewMethodsRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node->isMagic()) {
+            return [];
+        }
+
+        $docComment = $node->getDocComment();
+        if (null !== $docComment && $this->phpDocAnalyzer->containsInheritDocTag($docComment)) {
             return [];
         }
 
