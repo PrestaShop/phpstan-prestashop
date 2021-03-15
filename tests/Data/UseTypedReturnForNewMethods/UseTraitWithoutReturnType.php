@@ -12,7 +12,7 @@ class UseTraitWithoutReturnType
 {
     use TraitWithoutReturnType;
 
-    public function foo(): integer
+    public function foo(): int
     {
         $the = $this->abcd('efgh');
 
