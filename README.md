@@ -40,7 +40,12 @@ Rules are tested using PHPStan [RuleTestCase](https://github.com/phpstan/phpstan
 
 Run static analysis with PHPStan:
 ```bash
-vendor/bin/phpstan analyse src tests -l 5
+vendor/bin/phpstan analyse src tests/Rules -l 5
+```
+
+Extension is validated using a real PHPStan phar
+```bash
+bash tests/Acceptance/run.sh
 ```
 
 ## Use in a project
