@@ -15,4 +15,4 @@ jobs:
       - name: Composer Install
         run: composer install --dev
       - name: Run phpstan
-        run: ./vendor/bin/phpstan analyse src tests -l 5
+        run: ./vendor/bin/phpstan analyse src tests/Rules -l 5
