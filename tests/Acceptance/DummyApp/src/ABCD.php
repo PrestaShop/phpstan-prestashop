@@ -11,4 +11,13 @@ class ABCD
     {
         return self::class;
     }
+
+    public function toggle($state)
+    {
+        if ($state) {
+            echo "A";
+        } else {
+            echo "B";
+        }
+    }
 }

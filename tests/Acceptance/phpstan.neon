@@ -4,3 +4,22 @@ parameters:
         - DummyApp/autoload.php
     paths:
         - src
+
+includes:
+    - ../../extension.neon
+
+services:
+  strictTypesForNewClassesRuleConfigurationFileLoader:
+    class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+    arguments:
+      - tests/Acceptance/Config/strict-types-for-new-classes-rule-exclusion-list.php
+
+  returnTypesForNewMethodsRuleConfigurationFileLoader:
+    class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+    arguments:
+      - tests/Acceptance/Config/return-types-for-new-class-methods-rule-exclusion-list.php
+
+  typeHintsForNewMethodsRuleConfigurationFileLoader:
+    class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
+    arguments:
+      - tests/Acceptance/Config/type-hint-for-new-class-methods-rule-exclusion-list.php
