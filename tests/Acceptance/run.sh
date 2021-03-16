@@ -2,11 +2,11 @@
 
 echo "Running PHPStan 0.12.81 against dummy app..."
 
-phpstan_output=$(php phpstan_0.12.81.phar analyse DummyApp/ --error-format=json)
+phpstan_output=$(php tests/Acceptance/phpstan_0.12.81.phar analyse tests/Acceptance/DummyApp/ --error-format=json -l 5)
 
 echo "Validate PHPStan report..."
 
-php ValidateResult/validatePHPStanOutput.php "$phpstan_output"
+php tests/Acceptance/ValidateResult/validatePHPStanOutput.php "$phpstan_output"
 
 echo "No issues reported!"
 
