@@ -31,9 +31,9 @@ function assertFileHasErrorMessage(array $reportedJSON, string $givenFileName, s
                 if ($error['message'] === $errorMessage) {
                     if ($error['line'] === $lineNumber) {
                         return;
-                    } else {
-                        throw new RuntimeException(sprintf('Found error message %s at line %d instead of line %d', $errorMessage, $error['line'], $lineNumber));
                     }
+
+                    throw new RuntimeException(sprintf('Found error message %s at line %d instead of line %d', $errorMessage, $error['line'], $lineNumber));
                 }
             }
 
