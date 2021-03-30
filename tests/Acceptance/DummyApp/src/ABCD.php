@@ -1,9 +1,11 @@
 <?php
 
-namespace PHPStanForPrestaShopTests\Acceptance\DummyApp\src;
+namespace DummyApp;
 
 class ABCD
 {
+    use BadTrait;
+
     /**
      * @return int
      */
@@ -19,5 +21,7 @@ class ABCD
         } else {
             echo "B";
         }
+
+        echo $this->whatCouldGoWrong('C');
     }
 }
