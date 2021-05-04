@@ -59,6 +59,9 @@ class UseTypeHintForNewMethodsRule implements Rule
         if ($node->isMagic()) {
             return [];
         }
+        if ($scope->isInTrait()) {
+            return [];
+        }
 
         $docComment = $node->getDocComment();
         if (null !== $docComment && $this->phpDocAnalyzer->containsInheritDocTag($docComment)) {

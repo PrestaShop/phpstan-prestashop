@@ -8,7 +8,7 @@ require_once __DIR__ . '/helper.php';
 
 $reportedJSON = json_decode($argv[1], true);
 
-assertNumberTotalErrors($reportedJSON, 7);
+assertNumberTotalErrors($reportedJSON, 5);
 
 assertFileHasErrorMessage(
     $reportedJSON,
@@ -41,15 +41,3 @@ assertFileHasErrorMessage(
     17
 );
 
-assertFileHasErrorMessage(
-    $reportedJSON,
-    'BadTrait.php (in context of class DummyApp\ABCD)',
-    'Every parameter of function whatCouldGoWrong should be type hinted (untyped parameters: a).',
-    7
-);
-assertFileHasErrorMessage(
-    $reportedJSON,
-    'BadTrait.php (in context of class DummyApp\ABCD)',
-    'Function whatCouldGoWrong should declare return type.',
-    7
-);
