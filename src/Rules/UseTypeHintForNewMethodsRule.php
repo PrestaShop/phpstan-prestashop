@@ -14,7 +14,9 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Type\FileTypeMapper;
 use PHPStan\Rules\RuleErrorBuilder;
+use PHPStan\Type\MixedType;
 use PHPStanForPrestaShop\PHPConfigurationLoader\ConfigurationLoaderInterface;
 use PHPStanForPrestaShop\PhpDoc\PhpDocAnalyzer;
 
@@ -29,14 +31,21 @@ class UseTypeHintForNewMethodsRule implements Rule
     /** @var PhpDocAnalyzer */
     private $phpDocAnalyzer;
 
+    /** @var FileTypeMapper */
+    private $fileTypeMapper;
+
     /**
      * @param ConfigurationLoaderInterface $configurationFileLoader
      * @param PhpDocAnalyzer $phpDocAnalyzer
      */
-    public function __construct(ConfigurationLoaderInterface $configurationFileLoader, PhpDocAnalyzer $phpDocAnalyzer)
+    public function __construct(
+        ConfigurationLoaderInterface $configurationFileLoader,
+        PhpDocAnalyzer $phpDocAnalyzer,
+        FileTypeMapper $fileTypeMapper)
     {
         $this->excludedClassMethodsList = $configurationFileLoader->load();
         $this->phpDocAnalyzer = $phpDocAnalyzer;
+        $this->fileTypeMapper = $fileTypeMapper;
     }
 
     /**
@@ -75,7 +84,7 @@ class UseTypeHintForNewMethodsRule implements Rule
             return [];
         }
 
-        $notTypedParameters = $this->findNotTypedParameters($node);
+        $notTypedParameters = $this->findNotTypedParameters($node, $scope);
         // If class method has no untyped parameters => no violations
         if (empty($notTypedParameters)) {
             return [];
@@ -126,15 +135,48 @@ class UseTypeHintForNewMethodsRule implements Rule
      *
      * @return array
      */
-    private function findNotTypedParameters(ClassMethod $node): array
+    private function findNotTypedParameters(ClassMethod $node, Scope $scope): array
     {
         $notTypedParameters = [];
 
         foreach ($node->getParams() as $parameter) {
-            if ($parameter->type === null) {
-                $notTypedParameters[] = $parameter->var->name;
+            $parameterName = $parameter->var->name;
+            if (($parameter->type === null) && !$this->parameterHasTypeMixedInPhpDoc($parameterName, $node, $scope)) {
+                $notTypedParameters[] = $parameterName;
             }
         }
         return $notTypedParameters;
+    }
+
+    /**
+     * @param string $parameterName
+     * @param ClassMethod $node
+     * @param Scope $scope
+     *
+     * @return bool
+     */
+    private function parameterHasTypeMixedInPhpDoc(string $parameterName, ClassMethod $node, Scope $scope): bool
+    {
+        $docComment = $node->getDocComment();
+        if ($docComment === null) {
+            return false;
+        }
+
+        $functionName = $node->name->name;
+        $resolvedPhpDoc = $this->fileTypeMapper->getResolvedPhpDoc(
+            $scope->getFile(),
+            $scope->isInClass() ? $scope->getClassReflection()->getName() : null,
+            $scope->isInTrait() ? $scope->getTraitReflection()->getName() : null,
+            $functionName,
+            $docComment->getText()
+        );
+
+        foreach ($resolvedPhpDoc->getParamTags() as $currentParameterName => $phpDocParamTag) {
+            if (($parameterName === $currentParameterName) && ($phpDocParamTag->getType() instanceof MixedType)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
