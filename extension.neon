@@ -1,3 +1,9 @@
+parametersSchema:
+  isUseStrictTypesForNewClassesRuleActive: bool()
+  isClassConstantsMustHaveVisibilityRuleActive: bool()
+  isUseTypedReturnForNewMethodsRuleActive: bool()
+  isUseTypeHintForNewMethodsRuleActive: bool()
+
 services:
     PhpDocAnalyzer:
         class: PHPStanForPrestaShop\PhpDoc\PhpDocAnalyzer
@@ -6,6 +12,7 @@ services:
         class: PHPStanForPrestaShop\Rules\UseStrictTypesForNewClassesRule
         arguments:
             configurationFileLoader: @strictTypesForNewClassesRuleConfigurationFileLoader
+            isActive: %isUseStrictTypesForNewClassesRuleActive%
         tags:
             - phpstan.rules.rule
 
@@ -13,12 +20,15 @@ services:
         class: PHPStanForPrestaShop\Rules\ClassConstantsMustHaveVisibilityRule
         tags:
             - phpstan.rules.rule
+        arguments:
+            isActive: %isClassConstantsMustHaveVisibilityRuleActive%
 
     UseTypedReturnForNewMethodsRule:
         class: PHPStanForPrestaShop\Rules\UseTypedReturnForNewMethodsRule
         arguments:
             configurationFileLoader: @returnTypesForNewMethodsRuleConfigurationFileLoader
             phpDocAnalyzer: @PhpDocAnalyzer
+            isActive: %isUseTypedReturnForNewMethodsRuleActive%
         tags:
             - phpstan.rules.rule
 
@@ -27,5 +37,6 @@ services:
         arguments:
             configurationFileLoader: @typeHintsForNewMethodsRuleConfigurationFileLoader
             phpDocAnalyzer: @PhpDocAnalyzer
+            isActive: %isUseTypeHintForNewMethodsRuleActive%
         tags:
             - phpstan.rules.rule

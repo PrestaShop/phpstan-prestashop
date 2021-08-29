@@ -4,6 +4,10 @@ parameters:
         - DummyApp/autoload.php
     paths:
         - src
+    isUseStrictTypesForNewClassesRuleActive: true
+    isClassConstantsMustHaveVisibilityRuleActive: true
+    isUseTypedReturnForNewMethodsRuleActive: true
+    isUseTypeHintForNewMethodsRuleActive: true
 
 includes:
     - ../../extension.neon
@@ -12,7 +16,7 @@ services:
   strictTypesForNewClassesRuleConfigurationFileLoader:
     class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader
     arguments:
-      - tests/Acceptance/Config/strict-types-for-new-classes-rule-exclusion-list.php
+      - 'tests/Acceptance/Config/strict-types-for-new-classes-rule-exclusion-list.php'
 
   returnTypesForNewMethodsRuleConfigurationFileLoader:
     class: PHPStanForPrestaShop\PHPConfigurationLoader\PHPConfigurationFileLoader

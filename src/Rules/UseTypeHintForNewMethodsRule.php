@@ -29,14 +29,22 @@ class UseTypeHintForNewMethodsRule implements Rule
     /** @var PhpDocAnalyzer */
     private $phpDocAnalyzer;
 
+    /** @var bool */
+    private $isActive;
+
     /**
      * @param ConfigurationLoaderInterface $configurationFileLoader
      * @param PhpDocAnalyzer $phpDocAnalyzer
+     * @param bool $isActive
      */
-    public function __construct(ConfigurationLoaderInterface $configurationFileLoader, PhpDocAnalyzer $phpDocAnalyzer)
+    public function __construct(
+        ConfigurationLoaderInterface $configurationFileLoader,
+        PhpDocAnalyzer $phpDocAnalyzer,
+        bool $isActive = true)
     {
         $this->excludedClassMethodsList = $configurationFileLoader->load();
         $this->phpDocAnalyzer = $phpDocAnalyzer;
+        $this->isActive = $isActive;
     }
 
     /**
@@ -56,6 +64,10 @@ class UseTypeHintForNewMethodsRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        if (!$this->isActive) {
+            return [];
+        }
+
         if ($node->isMagic()) {
             return [];
         }
