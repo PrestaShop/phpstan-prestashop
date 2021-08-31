@@ -18,6 +18,17 @@ use PHPStan\Rules\RuleErrorBuilder;
 
 class ClassConstantsMustHaveVisibilityRule implements Rule
 {
+    /** @var bool */
+    private $isActive;
+
+    /**
+     * @param bool $isActive
+     */
+    public function __construct(bool $isActive = true)
+    {
+        $this->isActive = $isActive;
+    }
+
     public function getNodeType(): string
     {
         return ClassConst::class;
@@ -33,6 +44,10 @@ class ClassConstantsMustHaveVisibilityRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        if (!$this->isActive) {
+            return [];
+        }
+
         $constantDeclaresVisibility = (($node->flags & Node\Stmt\Class_::VISIBILITY_MODIFIER_MASK) !== 0);
 
         if (!$constantDeclaresVisibility) {

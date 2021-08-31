@@ -26,12 +26,19 @@ class UseStrictTypesForNewClassesRule implements Rule
     /** @var array */
     private $excludedClassList;
 
+    /** @var bool */
+    private $isActive;
+
     /**
      * @param ConfigurationLoaderInterface $configurationFileLoader
+     * @param bool $isActive
      */
-    public function __construct(ConfigurationLoaderInterface $configurationFileLoader)
+    public function __construct(
+        ConfigurationLoaderInterface $configurationFileLoader,
+        bool $isActive = true)
     {
         $this->excludedClassList = $configurationFileLoader->load();
+        $this->isActive = $isActive;
     }
 
     /**
@@ -47,6 +54,10 @@ class UseStrictTypesForNewClassesRule implements Rule
      */
     public function processNode(Node $node, Scope $scope): array
     {
+        if (!$this->isActive) {
+            return [];
+        }
+
         $namespace = $scope->getNamespace();
         $fullyQualifiedName = ($namespace ? $namespace . '\\' : '') . $node->name;
         if (in_array($fullyQualifiedName, $this->excludedClassList)) {
